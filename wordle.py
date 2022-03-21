@@ -1,8 +1,3 @@
-#generate word
-#show board
-#play game
-    #chech board with player
-
 import random
 
 #taking all the words from all_words
@@ -30,8 +25,7 @@ allias_chosen_word += chosen_word
 
 def showboard():
     
-    #print(f"|| {board[0]} || {board[1]} || {board[2]} || {board[3]} || {board[4]} ||")
-    pass
+    print(f"|| {board[0]} || {board[1]} || {board[2]} || {board[3]} || {board[4]} ||")
 
 def player_turn():
 
@@ -52,11 +46,11 @@ def player_turn():
             elif board in all_words:
                 pass
         letter += 1
+        
         greens()
-#        print(f"\n{green_list} <-- Green")
         yellows()
-#        print(f"{yellow_list} <-- Yellow\n")
         c_gray()
+        
         print(f"\n {board[0]}  {board[1]}  {board[2]}  {board[3]}  {board[4]}")
         print(f'{color_board[0]} {color_board[1]} {color_board[2]} {color_board[3]} {color_board[4]}\n')
 
@@ -202,3 +196,4 @@ def play_game():
 print(f"{green} = The letter is in the word and in the correct spot. \n{yellow} = The letter is in the word but in the wrong spot. \n{gray} = The letter is not in the word or in any spot.\n")
 print(f"{chosen_word}\n") # comment(#) this line and enjoy!
 play_game()
+
