@@ -1,4 +1,15 @@
 import random
+import time
+
+ANSI_GREEN = "\u001B[32m"
+ANSI_YELLOW = "\u001B[33m"
+ANSI_WHITE = "\u001B[37m"
+ansi_red = "\u001b[31m"
+
+GREEN_BOLD_BRIGHT = "\033[1;92m"
+RED_BOLD_BRIGHT = "\033[1;91m"
+
+ANSI_RESET = "\u001B[0m"
 
 #taking all the words from all_words
 with open('all_words.txt') as file:
@@ -34,23 +45,23 @@ def player_turn():
     global board
 
     if tries > 0:
-        print(f"lives left: {tries}")
+        print(f"{ANSI_YELLOW}lives left: {tries} {ANSI_RESET}")
         while board[letter] == "-":        
             board = input("Make your 5 letter guess: ").upper()
             if len(board) >= 6 or len(board) <= 4:
-                print("It needs to be a 5 letter word!")
+                print(f"{ansi_red}It needs to be a 5 letter word!{ANSI_RESET}")
                 board = ["-", "-", "-", "-", "-"]
             elif board not in all_words:
-                print("It needs to be a valid word!")
+                print(f"{ansi_red}It needs to be a valid word!{ANSI_RESET}")
                 board = ["-", "-", "-", "-", "-"]
             elif board in all_words:
                 pass
-        letter += 1
         
+        time.sleep(1)
+        letter += 1
         greens()
         yellows()
         c_gray()
-        
         print(f"\n {board[0]}  {board[1]}  {board[2]}  {board[3]}  {board[4]}")
         print(f'{color_board[0]} {color_board[1]} {color_board[2]} {color_board[3]} {color_board[4]}\n')
 
@@ -147,11 +158,11 @@ def win_loss():
     global game_still_on
 
     if board == chosen_word:
-        print("You've got it!")
+        print(f"{GREEN_BOLD_BRIGHT}You've got it!{ANSI_RESET}")
         print(f"{chosen_word} <--- Answer")
         game_still_on = False
     elif tries == 0:
-        print("Game Over!\n")
+        print(f"{RED_BOLD_BRIGHT}Game Over!{ANSI_RESET}\n")
         print(f"{chosen_word} <--- Answer")
         game_still_on = False
     
@@ -193,7 +204,6 @@ def play_game():
 
         reset()
 
-print(f"{green} = The letter is in the word and in the correct spot. \n{yellow} = The letter is in the word but in the wrong spot. \n{gray} = The letter is not in the word or in any spot.\n")
+print(f"{green}{ANSI_GREEN}= The Letter Is In The Word And In The {GREEN_BOLD_BRIGHT}Correct Spot. {ANSI_RESET}\n{yellow}{ANSI_YELLOW}= The Letter Is In The Word But In The {RED_BOLD_BRIGHT}Wrong Spot. {ANSI_RESET}\n{gray} = The Letter Is Not In The Word Or In Any Spot.\n")
 print(f"{chosen_word}\n") # comment(#) this line and enjoy!
 play_game()
-
